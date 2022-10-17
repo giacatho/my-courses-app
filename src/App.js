@@ -15,7 +15,7 @@ function App() {
 
   return (
     <div>
-      <h2>My course list</h2>
+      <h2>My Course List</h2>
       <ListCourse myCourseList={myCourseList} />
     </div>
   );

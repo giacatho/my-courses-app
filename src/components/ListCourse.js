@@ -2,28 +2,29 @@ import React, { useState } from 'react'
 import Course from './Course'
 
 export default function ListCourse({myCourseList}) {
-  const [ activeId, updateActiveId ] = useState('');
+  const [ detailId, updateDetailId ] = useState('');
   
   function handleCourseClick(id) {
-    updateActiveId(id);
+    updateDetailId(id);
   }
 
-  const listItems = myCourseList.map((myCourse) =>
+  const listCourseHtml = myCourseList.map((myCourse) =>
     <div key={myCourse.id}>
       <Course myCourse={myCourse} handleCourseClick={handleCourseClick} />
     </div>
   );
 
-  const activeCourse = myCourseList.find(myCourse => myCourse.id === activeId);
+  const detailCourse = 
+    myCourseList.find(myCourse => myCourse.id === detailId);
 
-  function getActiveItem() {
-    if (activeCourse) {
+  function getDetailCourseHtml() {
+    if (detailCourse) {
       return (
         <div>
-          <h4>Active Course</h4>
-          <div>Code: {activeCourse.code}</div>
-          <div>Name: {activeCourse.name}</div>
-          <div>Description: {activeCourse.description}</div>
+          <h4>Detail Course</h4>
+          <div>Code: {detailCourse.code}</div>
+          <div>Name: {detailCourse.name}</div>
+          <div>Description: {detailCourse.description}</div>
         </div>
       );
     } 
@@ -32,8 +33,8 @@ export default function ListCourse({myCourseList}) {
 
   return (
     <div>
-      {listItems}
-      {getActiveItem()}
+      {listCourseHtml}
+      {getDetailCourseHtml()}
     </div>
   )
 }
