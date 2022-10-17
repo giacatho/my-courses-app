@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import Course from './Course'
+import CourseDetail from './CourseDetail';
 
 export default function ListCourse({myCourseList}) {
   const [ detailId, updateDetailId ] = useState('');
@@ -20,12 +21,7 @@ export default function ListCourse({myCourseList}) {
   function getDetailCourseHtml() {
     if (detailCourse) {
       return (
-        <div>
-          <h4>Detail Course</h4>
-          <div>Code: {detailCourse.code}</div>
-          <div>Name: {detailCourse.name}</div>
-          <div>Description: {detailCourse.description}</div>
-        </div>
+        <CourseDetail detailCourse={detailCourse} />
       );
     } 
     return <></>;
