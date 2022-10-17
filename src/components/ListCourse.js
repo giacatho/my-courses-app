@@ -11,17 +11,17 @@ export default function ListCourse() {
   
   useEffect(() => {
     console.log("Retrieving course list from server");
-    retrieveCourseList();
+    apiRetrieveCourseList();
   });
 
-  function retrieveCourseList() {
+  function apiRetrieveCourseList() {
     axios.get(REST_API_URL)
       .then(response => {
         updateMyCourseList(response.data)
         console.log(response.data);
       })
       .catch(e => {
-        console.log(e);
+        
       });
   }
 
