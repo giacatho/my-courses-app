@@ -1,10 +1,30 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Course from './Course'
 import CourseDetail from './CourseDetail';
+import axios from 'axios';
 
-export default function ListCourse({myCourseList}) {
+const REST_API_URL = "http://localhost:8080/api/courses";
+
+export default function ListCourse() {
+  const [ myCourseList, updateMyCourseList ] = useState([]); 
   const [ detailId, updateDetailId ] = useState('');
   
+  useEffect(() => {
+    console.log("Retrieving course list from server");
+    retrieveCourseList();
+  });
+
+  function retrieveCourseList() {
+    axios.get(REST_API_URL)
+      .then(response => {
+        updateMyCourseList(response.data)
+        console.log(response.data);
+      })
+      .catch(e => {
+        console.log(e);
+      });
+  }
+
   function handleCourseClick(id) {
     updateDetailId(id);
   }
